@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin
+    xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-ble-central"
+    version="1.2.3">
+
+    <name>BLE</name>
+    <description>Bluetooth Low Energy (BLE) Central Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>bluetooth, BLE, bluetooth low energy, bluetooth smart</keywords>
+
+
+    <dependency id="cordova-plugin-compat" version="^1.2.0" />
+
+    <js-module src="www/ble.js" name="BLE">
+        <clobbers target="cordova.plugins.ble" />
+    </js-module>
+
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/widget">
+            <feature name="BLE">
+                <param name="android-package" value="com.megster.cordova.ble.central.BLECentralPlugin"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+            <uses-permission android:name="android.permission.BLUETOOTH"/>
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+        </config-file>
+
+        <source-file src="src/android/BLECentralPlugin.java"
+            target-dir="src/com/megster/cordova/ble/central"/>
+        <source-file src="src/android/BLECommand.java"
+            target-dir="src/com/megster/cordova/ble/central"/>
+        <source-file src="src/android/Peripheral.java"
+            target-dir="src/com/megster/cordova/ble/central"/>
+        <source-file src="src/android/Helper.java"
+            target-dir="src/com/megster/cordova/ble/central"/>
+        <source-file src="src/android/UUIDHelper.java"
+            target-dir="src/com/megster/cordova/ble/central"/>
+
+        <!--add by wanglili start-->
+        <source-file src="src/android/SampleGattAttributes.java"
+            target-dir="src/com/megster/cordova/ble/central"/>
+        <lib-file src="src/android/MDController.jar"/>
+        <source-file src="src/android/jniLibs/arm64-v8a/libJniWrapper.so" target-dir="libs/arm64-v8a"/>
+        <source-file src="src/android/jniLibs/armeabi/libJniWrapper.so" target-dir="libs/armeabi"/>
+        <source-file src="src/android/jniLibs/armeabi-v7a/libJniWrapper.so" target-dir="libs/armeabi-v7a"/>
+        <source-file src="src/android/jniLibs/mips/libJniWrapper.so" target-dir="libs/mips"/>
+        <source-file src="src/android/jniLibs/mips64/libJniWrapper.so" target-dir="libs/mips64"/>
+        <source-file src="src/android/jniLibs/x86/libJniWrapper.so" target-dir="libs/x86"/>
+        <source-file src="src/android/jniLibs/x86_64/libJniWrapper.so" target-dir="libs/x86_64"/>
+        <!--add by wanglili end-->
+   </platform>
+
+</plugin>
